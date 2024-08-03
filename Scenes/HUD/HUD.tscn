@@ -1,16 +1,16 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://HUD.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://StartButton.gd" type="Script" id=3]
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scene/HUD/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Scene/Main/StartButton.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="InputEventAction" id=3]
 action = "start_game"
@@ -20,10 +20,10 @@ shortcut = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 64
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="ScoreMeter" type="Label" parent="."]
 anchor_right = 1.0

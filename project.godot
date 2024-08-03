@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Oz - Dark Illusion"
 config/description="Experience a dark and crumbling version of L. Frank Baum's Oz, as never seen before and previously only imagined by American McGee."
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Scene/Main/Main.tscn"
 config/icon="res://icon.png"
 
 [display]
