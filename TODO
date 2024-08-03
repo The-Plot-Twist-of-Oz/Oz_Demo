@@ -1,0 +1,3 @@
+
+HUD:
+  ☐ Add a setter/getter for the health indicator and change it to "10/10" format, so people know when they have received health upgrades.
