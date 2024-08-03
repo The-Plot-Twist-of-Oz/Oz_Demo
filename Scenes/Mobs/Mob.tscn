@@ -3,7 +3,7 @@
 [ext_resource path="res://art/enemy3_front-1.png" type="Texture" id=1]
 [ext_resource path="res://art/enemy2_front-1.png" type="Texture" id=2]
 [ext_resource path="res://art/enemy1_front-1.png" type="Texture" id=3]
-[ext_resource path="res://Scene/Mobs/Mob.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Mobs/Mob.gd" type="Script" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
