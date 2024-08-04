@@ -1,16 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Main/StartButton.gd" type="Script" id=3]
-
+[ext_resource path="res://art/Button_ok.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 64
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 1 )
 
 [sub_resource type="InputEventAction" id=3]
@@ -18,6 +17,9 @@ action = "start_game"
 
 [sub_resource type="ShortCut" id=4]
 shortcut = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 64
@@ -51,14 +53,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -90.0
-margin_top = -200.0
-margin_right = 90.0
-margin_bottom = -100.0
-custom_fonts/font = SubResource( 2 )
+margin_left = -80.0
+margin_top = -299.0
+margin_right = 213.0
+margin_bottom = -204.0
+custom_fonts/font = SubResource( 6 )
 shortcut = SubResource( 4 )
 text = "Start"
 script = ExtResource( 3 )
+
+[node name="ControlsButton" type="Button" parent="."]
+margin_left = 842.0
+margin_top = 913.0
+margin_right = 1196.0
+margin_bottom = 978.0
+custom_fonts/font = SubResource( 7 )
+text = "Controls"
 
 [node name="MessageTimer" type="Timer" parent="."]
 one_shot = true
@@ -70,5 +80,10 @@ custom_fonts/font = SubResource( 5 )
 text = "10"
 align = 1
 
+[node name="ButtonOK" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="start_game" from="." to="." method="_on_HUD_start_game"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="ControlsButton" to="." method="_on_ControlsButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

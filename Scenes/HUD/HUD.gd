@@ -2,6 +2,8 @@ extends CanvasLayer
 
 signal start_game
 
+var controls_scene = preload("res://Scenes/Controls/Controls.tscn").instance()
+
 
 func show_message(text):
 	$GameTitle.text = text
@@ -25,9 +27,16 @@ func update_health(health):
 	$HealthMeter.text = str(health)
 
 func _on_StartButton_pressed():
+	$ButtonOK.play()
 	$StartButton.hide()
 	emit_signal("start_game")
 
 
 func _on_MessageTimer_timeout():
 	$GameTitle.hide()
+
+
+func _on_ControlsButton_pressed():
+	$ButtonOK.play()
+	get_tree().get_root().add_child(controls_scene)
+	hide()
