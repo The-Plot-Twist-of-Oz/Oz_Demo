@@ -5,6 +5,11 @@ signal hit
 export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
+export(Array, SpriteFrames) var characters
+export(Array, Texture) var characters_texture
+var nextChar = 0
+var cool_down = false
+
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -39,6 +44,11 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
 		$AnimatedSprite.flip_v = velocity.y > 0
+		
+	if Input.is_action_pressed("swap_characters") and !cool_down:
+		cool_down = true
+		character_swap()
+		$Timer.start()
 
 
 func start(pos):
@@ -50,3 +60,20 @@ func start(pos):
 func _on_Player_body_entered(_body):
 	emit_signal("hit")
 	# Must be deferred as we can't change physics properties on a physics callback.
+
+func character_swap():
+	$AnimatedSprite.frames = characters[nextChar]
+	$Trail.texture = characters_texture[nextChar]
+	
+	if nextChar == 1:
+		speed *= 2
+	elif speed != 400: 
+		speed /= 2
+	
+	nextChar += 1
+	if nextChar > 2:
+		nextChar = 0
+
+
+func _on_Timer_timeout():
+	cool_down = false

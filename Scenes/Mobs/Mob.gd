@@ -21,6 +21,8 @@ func _ready():
 
 func _physics_process(delta):
 	if enemy_type == "fly":
+		collision_mask = 2
+		collision_layer = 2
 		linear_velocity = target.position - position
 	elif enemy_type == "swim":
 		linear_velocity = down * speed
