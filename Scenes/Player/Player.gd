@@ -1,6 +1,8 @@
 extends Area2D
 
 signal hit
+signal dorothy_armed
+signal tin_man_armed
 
 export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -64,11 +66,18 @@ func _on_Player_body_entered(_body):
 func character_swap():
 	$AnimatedSprite.frames = characters[nextChar]
 	$Trail.texture = characters_texture[nextChar]
-	
-	if nextChar == 1:
+		
+		
+	if nextChar == 0:
+		emit_signal("dorothy_armed", false)
+		emit_signal("tin_man_armed", true)
+	elif nextChar == 1:
+		emit_signal("tin_man_armed", false)
 		speed *= 2
-	elif speed != 400: 
+	elif nextChar == 2:
 		speed /= 2
+		emit_signal("dorothy_armed", true)
+	
 	
 	nextChar += 1
 	if nextChar > 2:

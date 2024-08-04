@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://art/Dorothy_front-1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://Scenes/Player/SpriteFrames/LionSprite.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://art/Tin_Man_front-1.png" type="Texture" id=6]
 [ext_resource path="res://art/Lion_front-1.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Player/DorothyArea.gd" type="Script" id=8]
+[ext_resource path="res://art/Dorothy_area.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Player/TinManWeapone.gd" type="Script" id=10]
+[ext_resource path="res://art/Tin_Man_axe.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Player/Axe/Axe.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 26.1701
@@ -34,6 +39,17 @@ scale = 0.75
 scale_curve = SubResource( 6 )
 color_ramp = SubResource( 4 )
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 141.032
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Player" type="Area2D"]
 z_index = 10
 script = ExtResource( 2 )
@@ -60,8 +76,38 @@ process_material = SubResource( 7 )
 texture = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
+[node name="DorothyArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+monitorable = false
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DorothyArea"]
+shape = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="DorothyArea"]
+light_mask = 0
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 9 )
+
+[node name="TinManWeapone" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -39, 18 )
+frames = SubResource( 9 )
+script = ExtResource( 10 )
+axe = ExtResource( 12 )
+speed = 200
+
+[node name="Timer" type="Timer" parent="TinManWeapone"]
+wait_time = 5.0
+
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="dorothy_armed" from="." to="DorothyArea" method="_on_Player_dorothy_armed"]
+[connection signal="tin_man_armed" from="." to="TinManWeapone" method="_on_Player_tin_man_armed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="DorothyArea" to="DorothyArea" method="_on_DorothyArea_body_entered"]
+[connection signal="timeout" from="TinManWeapone/Timer" to="TinManWeapone" method="_on_Timer_timeout"]

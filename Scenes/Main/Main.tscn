@@ -68,6 +68,7 @@ is_at_the_bottom = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+stream_paused = true
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
