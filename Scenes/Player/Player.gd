@@ -41,11 +41,9 @@ func _process(delta):
 
 	if velocity.x != 0:
 		$AnimatedSprite.animation = "right"
-		$AnimatedSprite.flip_v = false
 		$AnimatedSprite.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
-		$AnimatedSprite.flip_v = velocity.y > 0
 		
 	if Input.is_action_pressed("swap_characters") and !cool_down:
 		cool_down = true

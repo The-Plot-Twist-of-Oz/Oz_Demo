@@ -43,3 +43,13 @@ func _on_Player_hit():
 
 func _on_OrbTimer_timeout():
 	pass # Replace with function body.
+
+
+func _on_Area2D_body_exited(body):
+	if body.name == "Player":
+		body.speed -= 100
+
+
+func _on_Area2D_body_entered(body):
+	if body.name == "Player":
+		body.speed += 100
