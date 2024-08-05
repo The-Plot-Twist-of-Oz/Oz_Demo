@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yellow_brick-2.png-9f22b79aa069aeb0fde638c19c41cf84.stex"
+path="res://.import/yellow_brick_road.png-61cc4caeaaaa32f680f480f8ce01045f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/yellow_brick-2.png"
-dest_files=[ "res://.import/yellow_brick-2.png-9f22b79aa069aeb0fde638c19c41cf84.stex" ]
+source_file="res://art/yellow_brick_road.png"
+dest_files=[ "res://.import/yellow_brick_road.png-61cc4caeaaaa32f680f480f8ce01045f.stex" ]
 
 [params]
 
