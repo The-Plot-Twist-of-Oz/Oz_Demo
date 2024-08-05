@@ -1,9 +1,16 @@
 extends Area2D
 
 signal hit
+signal dorothy_armed
+signal tin_man_armed
 
 export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
+
+export(Array, SpriteFrames) var characters
+export(Array, Texture) var characters_texture
+var nextChar = 0
+var cool_down = false
 
 
 func _ready():
@@ -39,6 +46,11 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
 		$AnimatedSprite.flip_v = velocity.y > 0
+		
+	if Input.is_action_pressed("swap_characters") and !cool_down:
+		cool_down = true
+		character_swap()
+		$Timer.start()
 
 
 func start(pos):
@@ -50,3 +62,27 @@ func start(pos):
 func _on_Player_body_entered(_body):
 	emit_signal("hit")
 	# Must be deferred as we can't change physics properties on a physics callback.
+
+func character_swap():
+	$AnimatedSprite.frames = characters[nextChar]
+	$Trail.texture = characters_texture[nextChar]
+		
+		
+	if nextChar == 0:
+		emit_signal("dorothy_armed", false)
+		emit_signal("tin_man_armed", true)
+	elif nextChar == 1:
+		emit_signal("tin_man_armed", false)
+		speed *= 2
+	elif nextChar == 2:
+		speed /= 2
+		emit_signal("dorothy_armed", true)
+	
+	
+	nextChar += 1
+	if nextChar > 2:
+		nextChar = 0
+
+
+func _on_Timer_timeout():
+	cool_down = false
