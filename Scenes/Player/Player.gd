@@ -3,8 +3,9 @@ extends Area2D
 signal hit
 signal dorothy_armed
 signal tin_man_armed
+signal heal
 
-export var speed = 400 # How fast the player will move (pixels/sec).
+export var speed = 250 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
 export(Array, SpriteFrames) var characters
@@ -41,11 +42,9 @@ func _process(delta):
 
 	if velocity.x != 0:
 		$AnimatedSprite.animation = "right"
-		$AnimatedSprite.flip_v = false
 		$AnimatedSprite.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
-		$AnimatedSprite.flip_v = velocity.y > 0
 		
 	if Input.is_action_pressed("swap_characters") and !cool_down:
 		cool_down = true
@@ -73,9 +72,9 @@ func character_swap():
 		emit_signal("tin_man_armed", true)
 	elif nextChar == 1:
 		emit_signal("tin_man_armed", false)
-		speed *= 2
+		speed += 400
 	elif nextChar == 2:
-		speed /= 2
+		speed -= 400
 		emit_signal("dorothy_armed", true)
 	
 	
@@ -86,3 +85,4 @@ func character_swap():
 
 func _on_Timer_timeout():
 	cool_down = false
+
