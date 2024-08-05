@@ -52,6 +52,7 @@ animations = [ {
 
 [node name="Player" type="Area2D"]
 z_index = 10
+collision_mask = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -80,10 +81,14 @@ wait_time = 2.0
 one_shot = true
 
 [node name="DorothyArea" type="Area2D" parent="."]
+z_index = -8
 collision_layer = 3
 collision_mask = 3
 monitorable = false
 script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="DorothyArea"]
+wait_time = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DorothyArea"]
 shape = SubResource( 8 )
@@ -110,4 +115,6 @@ wait_time = 5.0
 [connection signal="tin_man_armed" from="." to="TinManWeapone" method="_on_Player_tin_man_armed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="DorothyArea" to="DorothyArea" method="_on_DorothyArea_body_entered"]
+[connection signal="body_exited" from="DorothyArea" to="DorothyArea" method="_on_DorothyArea_body_exited"]
+[connection signal="timeout" from="DorothyArea/Timer" to="DorothyArea" method="_on_Timer_timeout"]
 [connection signal="timeout" from="TinManWeapone/Timer" to="TinManWeapone" method="_on_Timer_timeout"]
