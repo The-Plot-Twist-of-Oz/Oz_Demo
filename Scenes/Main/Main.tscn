@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://art/Level1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://art/background-6.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/SceneTimer/SceneTimer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/CutSceneLvl/CutSceneLvl.tscn" type="PackedScene" id=17]
+[ext_resource path="res://art/ground.png" type="Texture" id=18]
 
 [sub_resource type="AnimatedTexture" id=5]
 flags = 4
@@ -88,7 +89,7 @@ texture = SubResource( 5 )
 [node name="TextureRect2" type="TextureRect" parent="ColorRect"]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 16 )
+texture = ExtResource( 18 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 
