@@ -7,3 +7,7 @@ func _on_Area2D_body_entered(body):
 	
 	if mobs.bsearch(body) > 0:
 		body.emit_signal("hit", damage)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()

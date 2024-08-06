@@ -11,6 +11,7 @@ func _ready():
 func game_over():
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("orbs", "queue_free")
+	$HUD.update_health("Game Over")
 	$OrbTimer.stop()
 	$MobPath1/Timer.stop()
 	$MobPath2/Timer.stop()
@@ -29,6 +30,7 @@ func new_game():
 	$StartTimer.start()
 	$OrbTimer.start()
 	$HUD.update_score(score)
+	$HUD.update_health(health)
 	$HUD.show_message("Get Ready")
 	$Music.play()
 	
@@ -45,7 +47,6 @@ func _on_Player_hit():
 	health -= 1
 	$HUD.update_health(health)
 	if health < 0:
-		$HUD.update_health("Game Over")
 		game_over()
 
 

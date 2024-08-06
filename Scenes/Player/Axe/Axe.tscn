@@ -36,4 +36,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="Area2D" method="_on_VisibilityNotifier2D_screen_exited"]
