@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://art/Level1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=2]
@@ -15,7 +15,8 @@
 [ext_resource path="res://art/background-7.png" type="Texture" id=13]
 [ext_resource path="res://art/background-5.png" type="Texture" id=14]
 [ext_resource path="res://art/background-6.png" type="Texture" id=15]
-[ext_resource path="res://art/ground.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/SceneTimer/SceneTimer.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/CutSceneLvl/CutSceneLvl.tscn" type="PackedScene" id=17]
 
 [sub_resource type="AnimatedTexture" id=5]
 flags = 4
@@ -129,6 +130,9 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 1536, 192, 199, 199, 190, 1081, 316, 1093, 320, 320, 1415, 323, 1412.29, 517.653, 1217, 509, 1207, 447, 1037, 448, 771, 453, 771, 519, 309, 515, 313, 577, 392, 582, 387, 637, 832, 632, 834, 579, 1415, 582, 1407, 898, 1089, 903, 1096, 1019, 1398, 1029, 1415, 1084, 1529, 1086, 1542, 574, 1538.28, 378.214, 1536, 258 )
+
+[node name="Timer" parent="." instance=ExtResource( 16 )]
+next_level = ExtResource( 17 )
 
 [connection signal="heal" from="Player" to="." method="_on_Player_heal"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
