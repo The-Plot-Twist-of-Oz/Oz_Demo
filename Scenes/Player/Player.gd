@@ -86,3 +86,23 @@ func character_swap():
 func _on_Timer_timeout():
 	cool_down = false
 
+func play_death():
+	match nextChar:
+		0:
+			$DorothyDeath.play()
+		1:
+			$TinManDeath.play()
+		2:
+			$LionDeath.play()
+
+func play_hit():
+	match nextChar:
+		0:
+			if $DorothyHit.is_playing() == false:
+				$DorothyHit.play()
+		1:
+			if $TinManHit.is_playing() == false:
+				$TinManHit.play()
+		2:
+			if $LionHit.is_playing() == false:
+				$LionHit.play()

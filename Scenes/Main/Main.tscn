@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://art/theme.ogg" type="AudioStream" id=1]
+[ext_resource path="res://art/Level1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=2]
 [ext_resource path="res://art/yellow_brick_road.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/MobPath/MobPath.tscn" type="PackedScene" id=4]
@@ -108,7 +108,6 @@ is_at_the_bottom = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-stream_paused = true
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )

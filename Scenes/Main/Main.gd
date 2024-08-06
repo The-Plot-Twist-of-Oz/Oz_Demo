@@ -19,7 +19,7 @@ func game_over():
 	$HUD.show_game_over()
 	$Player.hide()
 	$Music.stop()
-	$DeathSound.play()
+	$Player.play_death()
 
 func new_game():
 	score = 0
@@ -46,6 +46,7 @@ func _on_StartTimer_timeout():
 func _on_Player_hit():
 	health -= 1
 	$HUD.update_health(health)
+	$Player.play_hit()
 	if health < 0:
 		game_over()
 
