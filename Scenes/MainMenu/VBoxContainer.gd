@@ -13,4 +13,6 @@ func _on_CreditsButton_pressed():
 
 
 func _on_StartButton_pressed():
+	AutoLoad.get_node("Intro").stop()
+	AutoLoad.get_node("Intro").isPlayed = false
 	get_tree().change_scene_to(level1)
