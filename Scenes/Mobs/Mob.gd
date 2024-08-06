@@ -4,12 +4,16 @@ onready var target = get_parent().get_node("Player")
 
 signal hit
 
-export var health_point = 100
+
 
 var speed = 40
 var enemy_type = "fly"
 var is_at_the_bottom = false
 var down = Vector2.DOWN
+
+var given_score = {"fly": 5, "walk": 10, "swim": 15}
+var health_point = 100
+var HP_dict = {"fly": 75, "walk": 100, "swim": 150}
 
 var mob_hit = false
 
@@ -26,6 +30,8 @@ func _ready():
 	elif enemy_type == "fly":
 		collision_mask = 2
 		collision_layer = 2
+	
+	health_point = HP_dict[enemy_type]
 	
 	if is_at_the_bottom:
 		down = Vector2.UP
@@ -139,5 +145,7 @@ func _on_Mob_hit(damage):
 					if mob_hit == false:
 						mob_hit = true
 						$"Zombie_Ouch-3".play()
+	print(health_point)
 	if health_point < 1:
+		get_parent().add_score(given_score[enemy_type])
 		queue_free()
