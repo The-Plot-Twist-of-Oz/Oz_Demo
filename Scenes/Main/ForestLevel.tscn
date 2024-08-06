@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://art/Level1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Scenes/MainMenu/CreditsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Tree/Tree.tscn" type="PackedScene" id=10]
+[ext_resource path="res://art/thanks.png" type="Texture" id=11]
+[ext_resource path="res://art/theme.ogg" type="AudioStream" id=12]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -35,8 +37,11 @@ margin_bottom = 1080.0
 color = Color( 0.0352941, 0.54902, 0.0784314, 1 )
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 704.0
+margin_top = 232.0
+margin_right = 1238.0
+margin_bottom = 402.0
+texture = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 
@@ -105,6 +110,10 @@ position = Vector2( 809, 611 )
 
 [node name="Tree12" parent="." instance=ExtResource( 10 )]
 position = Vector2( 831, 484 )
+
+[node name="HellishForest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
 
 [connection signal="heal" from="Player" to="." method="_on_Player_heal"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
