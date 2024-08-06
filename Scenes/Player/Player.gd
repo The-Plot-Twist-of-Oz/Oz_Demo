@@ -66,11 +66,14 @@ func character_swap():
 	if nextChar == 0:
 		emit_signal("dorothy_armed", false)
 		emit_signal("tin_man_armed", true)
+		$TinManSwap.play()
 	elif nextChar == 1:
+		$LionSwap.play()
 		emit_signal("tin_man_armed", false)
 		speed += 400
 	elif nextChar == 2:
 		speed -= 400
+		$DorothySwap.play()
 		emit_signal("dorothy_armed", true)
 	
 	

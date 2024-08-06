@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/Player/DorothyArea.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/SFX/Tin_man_ouch.wav" type="AudioStream" id=2]
@@ -18,6 +18,15 @@
 [ext_resource path="res://Scenes/Player/SpriteFrames/TinManSprite.tres" type="SpriteFrames" id=16]
 [ext_resource path="res://art/Lion_front-1.png" type="Texture" id=17]
 [ext_resource path="res://art/Tin_Man_front-1.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/Player/SFX/Tin_man_death.wav" type="AudioStream" id=19]
+[ext_resource path="res://Scenes/Player/SFX/Dorothy_death.wav" type="AudioStream" id=20]
+[ext_resource path="res://Scenes/Player/SFX/Lion_death.wav" type="AudioStream" id=21]
+[ext_resource path="res://Scenes/Player/SFX/Lion_Ouch.wav" type="AudioStream" id=22]
+[ext_resource path="res://Scenes/Player/SFX/Dorothy_ouch.wav" type="AudioStream" id=23]
+[ext_resource path="res://Scenes/Player/SFX/Tin_man_ouch.wav" type="AudioStream" id=24]
+[ext_resource path="res://art/Dorothy_footsteps_1.wav" type="AudioStream" id=25]
+[ext_resource path="res://art/Tin_man_footsteps_1.wav" type="AudioStream" id=26]
+[ext_resource path="res://art/Lion_footsteps_1.wav" type="AudioStream" id=27]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.0
@@ -145,6 +154,19 @@ volume_db = 10.0
 stream = ExtResource( 3 )
 volume_db = 1.0
 
+[node name="DorothySwap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 25 )
+volume_db = 12.0
+
+[node name="TinManSwap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 26 )
+volume_db = 8.0
+
+[node name="LionSwap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 27 )
+volume_db = 6.0
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="dorothy_armed" from="." to="DorothyArea" method="_on_Player_dorothy_armed"]
 [connection signal="tin_man_armed" from="." to="TinManWeapone" method="_on_Player_tin_man_armed"]
 [connection signal="timeout" from="SwitchCD" to="." method="_on_SwitchCD_timeout"]
