@@ -1,7 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://art/Toxic_zone.png" type="Texture" id=1]
+[ext_resource path="res://art/Toxic_zone5.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Toxic_orb/Toxic_zone.gd" type="Script" id=2]
+[ext_resource path="res://art/Toxic_zone3.png" type="Texture" id=3]
+[ext_resource path="res://art/Toxic_zone2.png" type="Texture" id=4]
+[ext_resource path="res://art/Toxic_zone1.png" type="Texture" id=5]
+[ext_resource path="res://art/Toxic_zone4.png" type="Texture" id=6]
+
+[sub_resource type="AnimatedTexture" id=2]
+flags = 4
+frames = 5
+frame_0/texture = ExtResource( 5 )
+frame_1/texture = ExtResource( 4 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 3 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 6 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 1 )
+frame_4/delay_sec = 0.0
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0156
@@ -10,7 +27,7 @@ radius = 32.0156
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
