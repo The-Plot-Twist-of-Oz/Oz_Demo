@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 signal hit
 signal dorothy_armed
@@ -49,18 +49,14 @@ func _process(delta):
 	if Input.is_action_pressed("swap_characters") and !cool_down:
 		cool_down = true
 		character_swap()
-		$Timer.start()
+		$SwitchCD.start()
 
 
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-
-
-func _on_Player_body_entered(_body):
-	emit_signal("hit")
-	# Must be deferred as we can't change physics properties on a physics callback.
+	
 
 func character_swap():
 	$AnimatedSprite.frames = characters[nextChar]
@@ -106,3 +102,8 @@ func play_hit():
 		2:
 			if $LionHit.is_playing() == false:
 				$LionHit.play()
+
+
+func _on_Area2D_body_entered(body):
+	if body.get_groups().has("mobs"):
+		emit_signal("hit")

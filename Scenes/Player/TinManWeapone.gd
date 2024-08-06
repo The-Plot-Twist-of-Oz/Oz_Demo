@@ -11,9 +11,9 @@ func _on_Player_tin_man_armed(isTinManArmed: bool):
 	
 	if isArmed:
 		_on_Timer_timeout()
-		$Timer.start()
+		$ThrowCD.start()
 	else:
-		$Timer.stop()
+		$ThrowCD.stop()
 
 
 func _on_Timer_timeout():
