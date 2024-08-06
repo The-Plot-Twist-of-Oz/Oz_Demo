@@ -3,9 +3,9 @@
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://art/MainMenu.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/MainMenu/VBoxContainer.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Main/Main.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/MainMenu/ControlMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/MainMenu/CreditsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/IntroCutScene/IntroCutScene.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -58,7 +58,7 @@ custom_constants/separation = 30
 script = ExtResource( 3 )
 controlMenu = ExtResource( 5 )
 creditsMenu = ExtResource( 6 )
-level1 = ExtResource( 4 )
+level1 = ExtResource( 7 )
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_right = 132.0
