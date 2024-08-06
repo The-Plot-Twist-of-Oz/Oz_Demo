@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Lion_death.wav-70d9ef849a2b11083ff1979842f9aebb.sample"
+
+[deps]
+
+source_file="res://Scenes/Player/SFX/Lion_death.wav"
+dest_files=[ "res://.import/Lion_death.wav-70d9ef849a2b11083ff1979842f9aebb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

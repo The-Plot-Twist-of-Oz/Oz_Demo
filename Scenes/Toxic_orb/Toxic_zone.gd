@@ -7,4 +7,4 @@ func _on_Toxic_zone_area_entered(area):
 
 
 func _on_Timer_timeout():
-	queue_free()
+	pass
