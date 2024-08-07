@@ -32,8 +32,13 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.update_health(health)
 	$HUD.show_message("Get Ready")
+	$Timer.start()
 	$Music.play()
 	
+
+func add_score(given_score):
+	score += given_score
+	$HUD.update_score(score)
 
 func _on_ScoreTimer_timeout():
 	score += 1
@@ -73,3 +78,4 @@ func _on_Player_heal():
 	if health < 10:
 		health += 1
 		$HUD.update_health(health)
+

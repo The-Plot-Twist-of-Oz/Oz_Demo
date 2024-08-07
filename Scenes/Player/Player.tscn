@@ -94,7 +94,7 @@ monitorable = false
 script = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="DorothyArea"]
-wait_time = 0.25
+wait_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DorothyArea"]
 shape = SubResource( 8 )
