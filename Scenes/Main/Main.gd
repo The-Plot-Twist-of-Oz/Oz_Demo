@@ -64,18 +64,17 @@ func _on_OrbTimer_timeout():
 	add_child(orb)
 
 
-func _on_Area2D_area_entered(area):
-	if area.name == "Player":
-		area.speed += 150
-
-
-func _on_Area2D_area_exited(area):
-	if area.name == "Player":
-		area.speed -= 150
-
-
 func _on_Player_heal():
 	if health < 10:
 		health += 1
 		$HUD.update_health(health)
 
+
+func _on_Area2D_body_entered(body):
+	if body.name == "Player":
+		body.speed -= 150
+
+
+func _on_Area2D_body_exited(body):
+	if body.name == "Player":
+		body.speed += 150

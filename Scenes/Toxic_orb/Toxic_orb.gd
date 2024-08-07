@@ -19,20 +19,19 @@ func _on_Timer_timeout():
 		get_parent().add_child(zone)
 		queue_free()
 
-
-func _on_Toxic_orb_area_entered(area):
-	if area.name == "Player":
-		$CleanseTimer.start()
-		$GrowTimer.stop()
-
-
-func _on_Toxic_orb_area_exited(area):
-	if area.name == "Player" and !isCleansed:
-		$CleanseTimer.stop()
-		$GrowTimer.start()
-
-
 func _on_CleanseTimer_timeout():
 	isCleansed = true
 	get_parent().get_node("Player").emit_signal("heal")
 	queue_free()
+
+
+func _on_Toxic_orb_body_entered(body):
+	if body.name == "Player":
+		$CleanseTimer.start()
+		$GrowTimer.stop()
+
+
+func _on_Toxic_orb_body_exited(body):
+	if body.name == "Player" and !isCleansed:
+		$CleanseTimer.stop()
+		$GrowTimer.start()

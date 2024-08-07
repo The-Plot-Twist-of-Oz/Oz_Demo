@@ -6,10 +6,10 @@ signal tin_man_armed
 signal heal
 
 export var speed = 250 # How fast the player will move (pixels/sec).
-var screen_size # Size of the game window.
-
 export(Array, SpriteFrames) var characters
 export(Array, Texture) var characters_texture
+
+var screen_size # Size of the game window.
 var nextChar = 0
 var cool_down = false
 
@@ -36,7 +36,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.stop()
 
-	position += velocity * delta
+	move_and_slide(velocity)
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
@@ -45,7 +45,7 @@ func _process(delta):
 		$AnimatedSprite.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
-		
+	
 	if Input.is_action_pressed("swap_characters") and !cool_down:
 		cool_down = true
 		character_swap()
@@ -79,9 +79,6 @@ func character_swap():
 		nextChar = 0
 
 
-func _on_Timer_timeout():
-	cool_down = false
-
 func play_death():
 	match nextChar:
 		0:
@@ -107,3 +104,7 @@ func play_hit():
 func _on_Area2D_body_entered(body):
 	if body.get_groups().has("mobs"):
 		emit_signal("hit")
+
+
+func _on_SwitchCD_timeout():
+	cool_down = false

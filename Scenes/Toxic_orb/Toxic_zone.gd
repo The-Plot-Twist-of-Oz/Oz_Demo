@@ -1,10 +1,6 @@
 extends Area2D
 
 
-func _on_Toxic_zone_area_entered(area):
-	if area.name == "Player":
-		area.get_parent().game_over()
-
-
-func _on_Timer_timeout():
-	pass
+func _on_Toxic_zone_body_entered(body):
+	if body.name == "Player":
+		body.get_parent().game_over()
