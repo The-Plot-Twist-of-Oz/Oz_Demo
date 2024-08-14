@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 signal hit
 signal dorothy_armed
@@ -6,10 +6,10 @@ signal tin_man_armed
 signal heal
 
 export var speed = 250 # How fast the player will move (pixels/sec).
-var screen_size # Size of the game window.
-
 export(Array, SpriteFrames) var characters
 export(Array, Texture) var characters_texture
+
+var screen_size # Size of the game window.
 var nextChar = 0
 var cool_down = false
 
@@ -36,7 +36,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite.stop()
 
-	position += velocity * delta
+	move_and_slide(velocity)
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
@@ -45,22 +45,18 @@ func _process(delta):
 		$AnimatedSprite.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
-		
+	
 	if Input.is_action_pressed("swap_characters") and !cool_down:
 		cool_down = true
 		character_swap()
-		$Timer.start()
+		$SwitchCD.start()
 
 
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-
-
-func _on_Player_body_entered(_body):
-	emit_signal("hit")
-	# Must be deferred as we can't change physics properties on a physics callback.
+	
 
 func character_swap():
 	$AnimatedSprite.frames = characters[nextChar]
@@ -70,11 +66,14 @@ func character_swap():
 	if nextChar == 0:
 		emit_signal("dorothy_armed", false)
 		emit_signal("tin_man_armed", true)
+		$TinManSwap.play()
 	elif nextChar == 1:
+		$LionSwap.play()
 		emit_signal("tin_man_armed", false)
 		speed += 400
 	elif nextChar == 2:
 		speed -= 400
+		$DorothySwap.play()
 		emit_signal("dorothy_armed", true)
 	
 	
@@ -82,9 +81,6 @@ func character_swap():
 	if nextChar > 2:
 		nextChar = 0
 
-
-func _on_Timer_timeout():
-	cool_down = false
 
 func play_death():
 	match nextChar:
@@ -106,3 +102,12 @@ func play_hit():
 		2:
 			if $LionHit.is_playing() == false:
 				$LionHit.play()
+
+
+func _on_Area2D_body_entered(body):
+	if body.get_groups().has("mobs"):
+		emit_signal("hit")
+
+
+func _on_SwitchCD_timeout():
+	cool_down = false

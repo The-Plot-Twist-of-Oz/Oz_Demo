@@ -8,6 +8,8 @@
 radius = 33.0606
 
 [node name="Toxic_orb" type="Area2D" groups=["orbs"]]
+collision_layer = 256
+collision_mask = 256
 script = ExtResource( 2 )
 target_scale = Vector2( 3, 3 )
 toxic_zone = ExtResource( 3 )
@@ -28,7 +30,7 @@ autostart = true
 wait_time = 2.0
 one_shot = true
 
-[connection signal="area_entered" from="." to="." method="_on_Toxic_orb_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Toxic_orb_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_Toxic_orb_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Toxic_orb_body_exited"]
 [connection signal="timeout" from="GrowTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="CleanseTimer" to="." method="_on_CleanseTimer_timeout"]
