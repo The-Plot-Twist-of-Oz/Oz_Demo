@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://art/Level1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://art/gameover.wav" type="AudioStream" id=2]
@@ -18,6 +18,9 @@
 [ext_resource path="res://Scenes/SceneTimer/SceneTimer.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/CutSceneLvl/CutSceneLvl.tscn" type="PackedScene" id=17]
 [ext_resource path="res://art/ground.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/Mobs/Walker/Walker.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Mobs/WalkerBig/WalkerBig.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Mobs/Monkey/Monkey.tscn" type="PackedScene" id=21]
 
 [sub_resource type="AnimatedTexture" id=5]
 flags = 4
@@ -107,9 +110,11 @@ position = Vector2( 240, 450 )
 
 [node name="MobPath1" parent="." instance=ExtResource( 4 )]
 curve = SubResource( 3 )
+mob_scenes = [ ExtResource( 21 ), ExtResource( 19 ), ExtResource( 20 ) ]
 
 [node name="MobPath2" parent="." instance=ExtResource( 4 )]
 curve = SubResource( 4 )
+mob_scenes = [ ExtResource( 21 ), ExtResource( 19 ), ExtResource( 20 ) ]
 is_at_the_bottom = true
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]

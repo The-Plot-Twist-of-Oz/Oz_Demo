@@ -1,0 +1,51 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Components/MovmentComponent/MovmentComponent.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Components/HealthComponent/HealthComponent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Mobs/WalkerBig/WalkerBig.gd" type="Script" id=3]
+[ext_resource path="res://art/enemy2_front-3.png" type="Texture" id=4]
+[ext_resource path="res://art/enemy2_front-1.png" type="Texture" id=5]
+[ext_resource path="res://art/enemy2_front-2.png" type="Texture" id=6]
+[ext_resource path="res://art/enemy2_front-4.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_ouch-1.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_ouch-2.wav" type="AudioStream" id=9]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_ouch-3.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_growl-3.wav" type="AudioStream" id=11]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_growl-4.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_growl-1.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scenes/Mobs/SFX/Zombie_growl-2.wav" type="AudioStream" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 75.5, 122 )
+
+[node name="WalkerBig" type="RigidBody2D" groups=["mobs"]]
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource( 3 )
+sounds = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 6.5, -2 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource( 2 )]
+
+[node name="MovmentComponent" parent="." instance=ExtResource( 1 )]
+
+[connection signal="hit" from="." to="." method="_on_Mob_hit"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
