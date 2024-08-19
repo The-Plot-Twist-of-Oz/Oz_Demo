@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "TextureManager",
+"language": "GDScript",
+"path": "res://Systems/TextureManager.gd"
+}, {
+"base": "Reference",
+"class": "TrophyManager",
+"language": "GDScript",
+"path": "res://Systems/TrophyManager.gd"
+}, {
+"base": "Node",
+"class": "_GameJolt",
+"language": "GDScript",
+"path": "res://addons/gamejolt/gamejolt.gd"
+} ]
+_global_script_class_icons={
+"TextureManager": "",
+"TrophyManager": "",
+"_GameJolt": ""
+}
+
 [application]
 
 config/name="Oz - Dark Illusion"
@@ -18,6 +40,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AutoLoad="*res://Scenes/MainMenu/AutoLoad.tscn"
+GameJolt="*res://addons/gamejolt/gamejolt.gd"
 
 [display]
 
@@ -25,6 +48,18 @@ window/size/width=1920
 window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
+
+[game_jolt]
+
+config/global/private_key=""
+config/debug/enabled=false
+config/debug/user_token=""
+config/global/game_id=""
+config/debug/user_name=""
 
 [input]
 
