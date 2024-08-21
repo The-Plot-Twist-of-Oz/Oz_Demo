@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Psychoses/Hopless/Hopeless.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Toxic_orb/Toxic_orb.tscn" type="PackedScene" id=2]
+
+[node name="Hopless" type="Node2D"]
+script = ExtResource( 1 )
+fake_orb = ExtResource( 2 )

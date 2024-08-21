@@ -15,6 +15,7 @@ var cool_down = false
 
 
 func _ready():
+	#$PsychosesSystem.add_psychoses()
 	screen_size = get_viewport_rect().size
 	hide()
 

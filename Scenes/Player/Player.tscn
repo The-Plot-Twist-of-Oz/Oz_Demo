@@ -1,16 +1,12 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Player/DorothyArea.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player/SFX/Tin_man_ouch.wav" type="AudioStream" id=2]
-[ext_resource path="res://Scenes/Player/SFX/Lion_Ouch.wav" type="AudioStream" id=3]
-[ext_resource path="res://Scenes/Player/SFX/Dorothy_ouch.wav" type="AudioStream" id=4]
+[ext_resource path="res://Systems/PsychosesSystem.gd" type="Script" id=2]
+[ext_resource path="res://Psychoses/Hopless/Hopless.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/Dorothy_front-1.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Player/SpriteFrames/DorothySprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://art/Tin_Man_axe.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Player/SFX/Lion_death.wav" type="AudioStream" id=8]
 [ext_resource path="res://art/Dorothy_area.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/Player/SFX/Tin_man_death.wav" type="AudioStream" id=10]
-[ext_resource path="res://Scenes/Player/SFX/Dorothy_death.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scenes/Player/Axe/Axe.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Player/TinManWeapone.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=14]
@@ -134,24 +130,24 @@ speed = 200
 wait_time = 5.0
 
 [node name="DorothyDeath" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 20 )
 
 [node name="TinManDeath" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 19 )
 
 [node name="LionDeath" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 21 )
 
 [node name="DorothyHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 23 )
 volume_db = 1.0
 
 [node name="TinManHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 24 )
 volume_db = 10.0
 
 [node name="LionHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 22 )
 volume_db = 1.0
 
 [node name="DorothySwap" type="AudioStreamPlayer2D" parent="."]
@@ -166,7 +162,10 @@ volume_db = 8.0
 stream = ExtResource( 27 )
 volume_db = 6.0
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[node name="PsychosesSystem" type="Node" parent="."]
+script = ExtResource( 2 )
+psychoses = [ ExtResource( 3 ) ]
+
 [connection signal="dorothy_armed" from="." to="DorothyArea" method="_on_Player_dorothy_armed"]
 [connection signal="tin_man_armed" from="." to="TinManWeapone" method="_on_Player_tin_man_armed"]
 [connection signal="timeout" from="SwitchCD" to="." method="_on_SwitchCD_timeout"]

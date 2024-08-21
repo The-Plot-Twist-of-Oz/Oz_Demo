@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "PsychosesSystem",
+"language": "GDScript",
+"path": "res://Systems/PsychosesSystem.gd"
+}, {
 "base": "Reference",
 "class": "TextureManager",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://addons/gamejolt/gamejolt.gd"
 } ]
 _global_script_class_icons={
+"PsychosesSystem": "",
 "TextureManager": "",
 "TrophyManager": "",
 "_GameJolt": ""

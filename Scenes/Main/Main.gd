@@ -49,6 +49,10 @@ func _on_StartTimer_timeout():
 	$ScoreTimer.start()
 
 func _on_Player_hit():
+	if $Player.has_meta("PsychosesSystem"):
+			var Psychoses = $Player.get_meta("PsychosesSystem", null)
+			Psychoses.add_stress(10)
+			
 	health -= 1
 	$HUD.update_health(health)
 	$Player.play_hit()
@@ -61,10 +65,17 @@ func _on_OrbTimer_timeout():
 	
 	orb.position = Vector2(rand_range(192, 1728), rand_range(192, 888))
 	
+	if $Player.has_meta("Hopless"):
+		orb.get_node("CleanseTimer").wait_time = 1.5
+	
 	add_child(orb)
 
 
 func _on_Player_heal():
+	if $Player.has_meta("PsychosesSystem"):
+			var Psychoses = $Player.get_meta("PsychosesSystem", null)
+			Psychoses.add_stress(-20)
+	
 	if health < 10:
 		health += 1
 		$HUD.update_health(health)
